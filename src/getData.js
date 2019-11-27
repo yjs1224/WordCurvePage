@@ -1,6 +1,6 @@
 import reqwest from 'reqwest';
 
-const serverURL = 'http://101.6.69.26:5003'; // same as backend
+const serverURL = 'https://101.6.69.26:5003'; // same as backend
 
 function wrapUrl(url) {
     let trueURL;

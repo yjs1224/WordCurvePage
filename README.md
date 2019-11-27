@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository is the frontend submodule of [wordCurve](https://github.com/wangke1996/wordCurve)
 
-## Available Scripts
+You can view the page [here](https://wangke1996.github.io/WordCurvePage)
 
-In the project directory, you can run:
+This README file is for developers
 
-### `npm start`
+## Set Up
+* First of all, you need [nodejs](https://nodejs.org/en/) installed
+- Fork this repository, git clone, cd to the working directory, then run:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+        npm install
+* To check if you set the environment properly, try:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+        npm start
+    If everything goes fine, you should see:
+    
+        Compiled successfully!
+        You can now view frontend in the browser.
+            http://localhost:3000/
+    Here, localhost means your server's IP address. For example, if your IP is 101.6.70.15, then open http://101.6.70.15:3000 in browser, you should see the page, that means everything is fine.
 
-### `npm test`
+## Backend Interaction
+* Config backend server url in [src/getData.js](src/getData.js)
+- Every request sent by frontend should be handled by backend. For example, in [src/getData.js](src/getData.js), we send a request with url 'getCurve', then in the [backend script](https://github.com/wangke1996/wordCurve/blob/master/backend/main/__init__.py), we handle this request and return data.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Developing codes
+* This project is based on [React](https://reactjs.org/), so if you're not familiar with React, these codes may be hard to understand for you. You should learn it first, the [tutorial](https://reactjs.org/tutorial/tutorial.html) is good.
+- We also use [Ant Design](https://ant.design/docs/react/introduce-cn) as UI framework.
+* The charts are plotted by [eCharts](https://www.echartsjs.com/examples/zh/index.html) as you can see in [src/wordCurve.js](src/wordCurve.js). eCharts API is [here](https://www.echartsjs.com/zh/option.html#title)
+- When you are developing codes, __npm start__ is more convenient, everytime you change your code, the develop page(localhost:3000) will refresh itself.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Publish to Github Page
+1. In [package.json](package.json), change "homepage" to your own page.
+2. Push your codes.
+3. run 
+    
+    npm run deploy
+4. Wait a few minutes, then visit your own page.
+5. See [here](https://reactgo.com/deploy-react-app-github-pages/) for more details. 

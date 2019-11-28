@@ -36,4 +36,22 @@ This README file is for developers
     
     npm run deploy
 4. Wait a few minutes, then visit your own page.
-5. See [here](https://reactgo.com/deploy-react-app-github-pages/) for more details. 
+5. See [here](https://reactgo.com/deploy-react-app-github-pages/) for more details.
+
+## Trouble Shooting
+* Input query but no response, it's loading forever:
+    1. Try to send a request manually: In your browser, open 
+    ```https://101.6.69.26:5003/getCandidate?query=abcd```
+    
+    2. You'll probably get a hint that this site is not safe.
+    3. In advanced options, allow to access this site.
+    4. Retry a query in your page, it should be OK now.
+- Can't find the word I want:
+    * If your query is part of the word:
+        * Maybe there are too many candidates, so we only display some of them, and your word is not included.
+        - Try to type the whole word as query. 
+    - If you have already input the whole word:
+        * I'm afraid that this word is not in our database, perhaps this word is not a common word.
+* Other problems related to our site: 
+    * Open an issue, or:
+    - Contact the author in email (We'll update this later)

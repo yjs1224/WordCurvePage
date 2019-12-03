@@ -24,7 +24,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://wangke1996.github.io/WordCurvePage",
+  "homepage": "https://yjs1224.github.io/WordCurvePage",
   "eslintConfig": {
     "extends": "react-app"
   },

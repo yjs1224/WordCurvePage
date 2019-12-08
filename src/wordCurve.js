@@ -23,6 +23,7 @@ export class WordCurve extends Component {
             },
             yAxis: {
                 type: 'value',
+                name: 'similarity'
             },
             legend: {
                 data: words,
@@ -35,7 +36,7 @@ export class WordCurve extends Component {
         return (
             <ReactEcharts key={Object.keys(this.props.values).join(',')}
                 option={this.getOption(this.props.values, this.props.years)}
-                style={{height: window.innerHeight, width: '80%'}}
+                style={{height: window.innerHeight, width: '80%',float:"left",fontFamily:"verdana"}}
             />
         )
     }

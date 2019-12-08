@@ -45,7 +45,7 @@ export class WordSelectBar extends Component {
                 filterOption={false}
                 onSearch={this.fetchCandidateWord}
                 onChange={this.handleChange}
-                style={{width: '100%'}}
+                style={{width: '100%', fontFamily:"verdana"}}
             >
                 {candidates.map(d => (
                     <Option key={d}>{d}</Option>

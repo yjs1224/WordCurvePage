@@ -10,16 +10,68 @@ export class WordCurve extends Component {
                 type: 'line',
                 name: key,
                 smooth: true,
+                showSymbol:false,
+                itemStyle:{
+                    emphasis:{
+                        borderWidth:10,
+                    },
+                },
             }
         });
         return {
+            tooltip:{
+                trigger:"axis",
+                axisPointer: {
+                    type: "cross",
+                    label: {
+                        show:false,
+                        formatter: function (params) {
+                            if (params.seriesData.length === 0) {
+                                window.mouseCurValue = params.value;
+                            }
+                        }
+                    }
+                },
+                formatter: function (params) {
+                    let res = "";
+                    // for (let i = 0; i < params.length; i++) {
+                    //     let series = params[i];
+                    //     sum += Number(series.data);
+                    //     if (sum >= window.mouseCurValue) {
+                    //         res = series.axisValue + "<br/>" + series.marker + series.seriesName + ":" + series.data + "<br/>";
+                    //         break;
+                    //     }
+                    // }
+                    let minDistance = 100,minDistanceIndex=0;
+                    for(let i =0;i<params.length;i++){
+                        let series = params[i];
+                        let distance = (Number(series.data)-window.mouseCurValue)>0?(Number(series.data)-window.mouseCurValue):(window.mouseCurValue-Number(series.data));
+                        if(minDistance>distance){
+                            minDistance = distance;
+                            minDistanceIndex = i;
+                        }
+                    }
+                    let series = params[minDistanceIndex];
+                    res = series.axisValue + "<br/>" + series.marker + series.seriesName + ":" + series.data + "<br/>";
+                    if(minDistance>0.5){
+                        res = "";
+                        res += params[0].axisValue;
+                        for(let i = 0;i<params.length;i++){
+                            let series = params[i];
+                            res +=  "<br/>" + series.marker + series.seriesName + ":" + series.data ;
+                        }
+                    }
+                    return res;
+                },
+            },
             title: {
                 text: 'Curve of ' + words.join(', '),
             },
             xAxis: {
                 type: 'category',
                 data: years,
-                name: 'Year'
+                name: 'Year',
+                boundarygap:false,
             },
             yAxis: {
                 type: 'value',
@@ -29,6 +81,23 @@ export class WordCurve extends Component {
                 data: words,
             },
             series: series,
+            toolbox: {
+                // left: '',
+                orient:"vertical",
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    // restore: {},
+                    saveAsImage: {}
+                }
+            },
+            dataZoom: [{
+                show:true,
+            },{
+                type: 'inside',
+                
+            }],
         };
     };
 
@@ -36,7 +105,7 @@ export class WordCurve extends Component {
         return (
             <ReactEcharts key={Object.keys(this.props.values).join(',')}
                 option={this.getOption(this.props.values, this.props.years)}
-                style={{height: window.innerHeight, width: '80%',float:"left",fontFamily:"verdana"}}
+                style={{height: "500px", width: '90%',marginLeft:"5%"}}
             />
         )
     }

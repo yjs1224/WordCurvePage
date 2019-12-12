@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import debounce from 'lodash/debounce';
 import {getCandidate} from "./getData";
-import {Select, Spin} from 'antd';
+import {Select, Spin, message} from 'antd';
 
 const {Option} = Select;
 
@@ -21,8 +21,12 @@ export class WordSelectBar extends Component {
         // const fetchId = this.lastFetchId;
         this.setState({candidates: [], fetching: true});
         getCandidate(query, (candidates) => {
-            this.setState({candidates, fetching: false});
+            this.setState({candidates, fetching: false}); 
+            if(candidates.length === 0){
+            message.info("No Such Word");
+        }
         });
+
     };
 
     handleChange = words => {
@@ -45,7 +49,7 @@ export class WordSelectBar extends Component {
                 filterOption={false}
                 onSearch={this.fetchCandidateWord}
                 onChange={this.handleChange}
-                style={{width: '100%', fontFamily:"verdana"}}
+                style={{width: '100%'}}
             >
                 {candidates.map(d => (
                     <Option key={d}>{d}</Option>
